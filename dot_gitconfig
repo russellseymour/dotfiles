@@ -1,0 +1,15 @@
+[safe]
+	directory = C:/Users/rseymour/workspaces
+	directory = C:/Users/rseymour/workspaces/stacks/stacks-cli
+	directory = C:/Users/rseymour/workspaces/stacks/stacks-docker-images
+	directory = C:/Users/rseymour/workspaces/amido/devops-newsletter
+	directory = C:/Users/rseymour/workspaces/stacks/independent-runner
+	directory = C:/Users/rseymour/workspaces/stacks/stacks-dotnet
+	directory = C:/Users/rseymour/workspaces/stacks/taskctl
+	directory = C:/Users/rseymour/workspaces/stacks/stacks-docs
+[user]
+	name = Russell Seymour
+	email = russell.seymour@turtlesystems.co.uk
+	signingkey = 731B6949841436AC
+[gpg]
+	program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
