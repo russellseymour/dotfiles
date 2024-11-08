@@ -1,0 +1,30 @@
+
+[user]
+email = {{ .gh_email | quote }}
+name = Russell Seymour
+signingkey = 731B6949841436AC
+
+[commit]
+gpgsign = true
+template = ~/.gitmessage
+
+{{ if eq .chezmoi.os "windows" }}
+
+[gpg]
+program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
+{{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
+
+[gpg]
+{{    if stat ("/usr/local/bin/gpg") -}}
+        program = /usr/local/bin/gpg
+{{    else if stat ("$HOME/.local/bin/gpg" | expandenv) -}}
+        program = {{ "$HOME/.local/bin/gpg" | expandenv }}
+{{    else -}}
+        program = gpg
+{{    end -}}
+{{ end }}
+
+[init]
+defaultBranch = main

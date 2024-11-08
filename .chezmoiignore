@@ -1,0 +1,27 @@
+README.md
+LICENSE
+
+# Ignore files if the platform is NOT linux
+{{- if ne .chezmoi.os "linux" }}
+/.config/nvim
+/.config/tmux
+/.config/zsh_aliases
+/.local
+/.profile
+/.bashrc
+/.zshrc
+{{- end }}
+
+{{- if not ( and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") ) }}
+/.local/bin/ssh
+/.local/bin/ssh-add
+/.local/bin/scp
+{{- end }}
+
+# ignore if NOT Windows
+{{- if ne .chezmoi.os "windows" }}
+/Documents
+/AppData
+/Pictures
+/nvim
+{{- end }}

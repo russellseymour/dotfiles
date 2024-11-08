@@ -1,0 +1,23 @@
+{{- $role := promptStringOnce . "role" "Role (personal/work)" -}}
+
+{{ if eq .chezmoi.os "windows" }}
+[cd]
+    command = "pwsh.exe"
+    args = ["-NoLogo"]
+[interpreters.ps1]
+    command = "pwsh.exe"
+    args = ["-NoLogo"]
+[diff]
+    command = "C:\\Program Files\\Neovim\\bin\\nvim.exe"
+    args = ["-d"]
+{{ end }}
+
+[data]
+    role = {{ $role | quote }}
+
+    {{ if eq $role "work" }}
+    email = "russell.seymour@ensono.com"
+    {{ end }}
+
+    gh_email = "russell.seymour@turtlesystems.co.uk"
+    name = "Russell Seymour"
