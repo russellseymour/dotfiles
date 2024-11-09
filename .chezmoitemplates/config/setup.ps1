@@ -19,7 +19,12 @@ $packages = @(
         "VideoLAN.VLC",
         "OBSProject.OBSStudio",
         "Zig.Zig",
-        "MartiCliment.UniGetUI"
+        "MartiCliment.UniGetUI",
+        "Seafile.Seafile",
+        "Yarn.Yarn",
+        "Obsidian.Obsidian",
+        "Yubico.YubikeyManagerCLI",
+        "albertony.npiperelay"
     )
 
 # Add in the personal packages if the role is personal
