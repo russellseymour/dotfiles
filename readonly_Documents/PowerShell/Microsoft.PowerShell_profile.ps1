@@ -7,6 +7,10 @@ if (Test-Path -Path $local_path) {
     oh-my-posh init pwsh --config $local_path | Invoke-Expression
 }
 
+if (!(Test-Path -Path env:\SSH_AUTH_SOCK)) {
+    [Environment]::SetEnvironmentVariable("SSH_AUTH_SOCK", "\\.\pipe\openssh-ssh-agent", [System.EnvironmentVariableTarget]::User)
+}
+
 # Define aliases
 Set-Alias -Name ls -Value Get-ChildItem
 Set-Alias -Name ll -Value Get-ChildItem -Force
