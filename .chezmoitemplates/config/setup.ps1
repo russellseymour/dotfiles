@@ -72,38 +72,3 @@ foreach ($package in $packages) {
         Invoke-Expression $cmd
     }
 }
-
-# Register fonts
-$font_folder = [IO.Path]::Combine($env:USERPROFILE, ".local", "share", "fonts")
-
-# Get all the files in the font folder
-$files = Get-ChildItem -Path $font_folder -Include ("*.ttf") -Recurse
-
-# Check to see if the font is installed or not
-$reg_path = "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts"
-
-# iterate around all the fonts that have been found
-foreach ($font in $files) {
-
-    # get the status of the package
-    Write-Host ("Checking for font: {0} " -f $font.BaseName) -NoNewLine
-
-    # Determine if the font is installed or not
-    $installed = Get-ItemProperty -Path $reg_path -Name $font.BaseName -ErrorAction SilentlyContinue
-
-    if ($installed) {
-        Write-Host -ForegroundColor Green "[Installed]"
-    } else {
-        Write-Host -ForegroundColor Yellow "[Not Installed, installing ....]"
-
-        # create a hashtable for the parameters for New-ItemProperty
-        $splat = @{
-            Name = $font.BaseName
-            Path = $reg_path
-            PropertyType = "String"
-            Value = $font.FullName
-        }
-
-        New-ItemProperty @splat
-    }
-}
