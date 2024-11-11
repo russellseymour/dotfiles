@@ -23,7 +23,7 @@ if (Test-Path $openSshExecutable) {
 # Configure the SSH agent so that GPG can be used
 # Get the status of the ssh-agent
 $service = Get-Service -Name ssh-agent
-$service
+
 if ($service.Status -eq "Running") {
     Write-Host "Stopping the ssh-agent service"
     Stop-Service -Name ssh-agent
