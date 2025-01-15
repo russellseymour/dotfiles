@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Install homebrew
-if ! /opt/homebrew/bin/brew &> /dev/null; then
+# Install homebrew on a Mac
+OS=`uname`
+if [ ! -f /opt/homebrew/bin/brew ] && [ "${OS}" == "Darwin" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
