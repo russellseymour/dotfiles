@@ -68,6 +68,9 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # set snap path
 [ -d "/snap/bin" ] && PATH="$PATH:/snap/bin"
 
+# set homebrew path
+[ -d "/opt/homebrew/bin" ] && PATH="$PATH:/opt/homebrew/bin"
+
 # Aliases
 [ -f $HOME/.config/zsh_aliases ] && source $HOME/.config/zsh_aliases
 [ -f $HOME/.config/windows_aliases ] && source $HOME/.config/windows_aliases

@@ -1,6 +1,9 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
+# Ensure that brew is in the path
+export PATH="/opt/homebrew/bin:$PATH"
+
 echo "Installing packages"
 
 brew install --cask obs
