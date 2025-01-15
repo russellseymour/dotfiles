@@ -1,0 +1,22 @@
+{{ if eq .chezmoi.os "darwin" }}
+
+#!/usr/bin/env zsh
+
+echo "Homebrew ..."
+
+homebrew_installed=$(command -v brew)
+
+if [ -n "$homebrew_installed"]; then
+    echo "\nInstalling
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+else
+    echo "\nInstalled
+fi
+
+echo "Installing packages"
+
+brew install --cask obs
+brew install --cask firefox
+brew install --cask visual-studio-code
+
+{{ end }}
