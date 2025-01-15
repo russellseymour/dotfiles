@@ -1,8 +1,8 @@
 README.md
 LICENSE
 
-# Ignore files if the platform is NOT linux
-{{- if ne .chezmoi.os "linux" }}
+# Ignore files if the platform is NOT linux or Darwin
+{{- if not ( or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin") ) }}
 /.config/nvim
 /.config/tmux
 /.config/zsh_aliases

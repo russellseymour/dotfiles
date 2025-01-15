@@ -1,0 +1,122 @@
+setopt histignorealldups sharehistory
+
+# Use vi bindings, but restore history search
+bindkey -v
+bindkey ^R history-incremental-search-backward
+bindkey ^S history-incremental-search-forward
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.cache/.zsh_history
+
+# configure editors
+if command -v nvim &> /dev/null; then
+  EDITOR=$(which nvim)
+else
+  EDITOR=vi
+fi
+VISUAL=$EDITOR
+
+# convenience variables
+export DISTRO_RELEASE=$(lsb_release --short --release | tr -d \")
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+# plugins
+plugins=(
+  git
+  vi-mode
+  zsh-autosuggestions
+)
+
+# zstyle
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# set PATH so it includes user's private bin if it exists
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+
+# set PATH so it includes user's private bin if it exists
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+
+# set PATH so it includes GO's local bin if it exists
+[ -d "/usr/local/go/bin" ] && PATH="/usr/local/go/bin:$PATH"
+
+# set PATH so it includes local bin if it exists
+[ -d "/usr/local/bin" ] && PATH="/usr/local/bin:$PATH"
+
+# set NeoVim path if it exists
+[ -d "/opt/nvim-linux64/bin" ] && PATH="$PATH:/opt/nvim-linux64/bin"
+
+# set snap path
+[ -d "/snap/bin" ] && PATH="$PATH:/snap/bin"
+
+# set homebrew path
+[ -d "/opt/homebrew/bin" ] && PATH="$PATH:/opt/homebrew/bin"
+
+# Aliases
+[ -f $HOME/.config/zsh_aliases ] && source $HOME/.config/zsh_aliases
+[ -f $HOME/.config/windows_aliases ] && source $HOME/.config/windows_aliases
+
+# zsh Syntax Highlighting
+[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Fuzzy finder
+if [ -f ~/.config/.fzf.zsh ]; then
+  source ~/.config/.fzf.zsh
+fi
+
+# chezmoi
+if [ -f ~/.local/chezmoi ]; then
+  chezmoi update
+  chezmoi apply
+fi
+
+# keybinds
+if [ -f ~/.config/zsh_keybinds ]; then
+  source ~/.config/zsh_keybinds
+fi
+
+# oh my posh
+if command -v oh-my-posh &> /dev/null; then
+  if [ -f "$HOME/.config/oh-my-posh/cloud-native-tokyo-night.omp.json" ]; then
+    eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/cloud-native-tokyo-night.omp.json)"
+  else
+    eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/RichardSlater/dotfiles/master/dot_config/oh-my-posh/cloud-native-tokyo-night.omp.json')"
+  fi
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/home/richardslater/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# taskctl
+if command -v taskctl &> /dev/null; then
+  . <(taskctl completion zsh)
+fi
+# taskctl end
