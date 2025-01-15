@@ -10,6 +10,9 @@ LICENSE
 /.profile
 /.bashrc
 /.zshrc
+/run_before_install-prereqs.sh
+/run_onchange_brew_install.zsh.tmpl
+/run_onchange_apt_install.bash.tmpl
 {{- end }}
 
 {{- if not ( and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") ) }}
@@ -24,4 +27,5 @@ LICENSE
 /AppData
 /Pictures
 /nvim
+/run_onchange_winget_install.ps1.tmpl
 {{- end }}

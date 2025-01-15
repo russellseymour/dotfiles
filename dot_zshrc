@@ -19,7 +19,9 @@ fi
 VISUAL=$EDITOR
 
 # convenience variables
-export DISTRO_RELEASE=$(lsb_release --short --release | tr -d \")
+if command -v lsb_release > /dev/null; then
+  export DISTRO_RELEASE=$(lsb_release --short --release | tr -d \")
+fi
 
 # Use modern completion system
 autoload -Uz compinit
