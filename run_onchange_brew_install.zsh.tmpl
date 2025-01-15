@@ -1,16 +1,5 @@
 {{ if eq .chezmoi.os "darwin" -}}
-#!/usr/bin/env zsh
-
-echo "Homebrew ..."
-
-homebrew_installed=$(command -v brew)
-
-if [ -n "$homebrew_installed"]; then
-    echo "\nInstalling
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-else
-    echo "\nInstalled
-fi
+#!/usr/bin/env bash
 
 echo "Installing packages"
 
