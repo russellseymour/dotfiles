@@ -26,5 +26,12 @@ program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
 {{    end -}}
 {{ end }}
 
+{{ if eq .chezmoi.os "darwin" -}}
+[gpg]
+{{ if stat ("/usr/local/bin/gpg") -}}
+        program = /usr/local/bin/gpg
+{{ end -}}
+{{ end }}
+
 [init]
 defaultBranch = main

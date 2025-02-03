@@ -129,3 +129,8 @@ if command -v taskctl &> /dev/null; then
   . <(taskctl completion zsh)
 fi
 # taskctl end
+
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
+
+export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
