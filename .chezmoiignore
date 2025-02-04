@@ -12,6 +12,7 @@ LICENSE
 /run_before_install-prereqs.sh
 /run_onchange_brew_install.zsh.tmpl
 /run_onchange_apt_install.bash.tmpl
+/.tmux.conf
 {{- end }}
 
 {{- if not ( and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") ) }}
