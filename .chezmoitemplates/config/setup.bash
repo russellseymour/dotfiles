@@ -10,5 +10,6 @@ sudo apt-update
 
 # Install required packages
 sudo apt install -y tmux \
-    neovim
+    neovim \
+    zsh
 
