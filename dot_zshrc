@@ -1,4 +1,5 @@
 setopt histignorealldups sharehistory
+setopt rmstarsilent
 
 # Use vi bindings, but restore history search
 bindkey -v
