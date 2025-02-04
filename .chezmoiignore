@@ -3,7 +3,6 @@ LICENSE
 
 # Ignore files if the platform is NOT linux or Darwin
 {{- if not ( or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin") ) }}
-/.config/nvim
 /.config/tmux
 /.config/zsh_aliases
 /.local
@@ -26,6 +25,5 @@ LICENSE
 /Documents
 /AppData
 /Pictures
-/nvim
 /run_onchange_winget_install.ps1.tmpl
 {{- end }}
