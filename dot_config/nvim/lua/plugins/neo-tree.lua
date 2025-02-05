@@ -15,6 +15,11 @@ return {
           hide_dotfiles = false,
           hide_gitignored = false,
           hide_hidden = false,
+          use_libuv_file_watcher = false,
+          follow_current_file = {
+            enable = true,
+            leave_dirs_open = false,
+          }
         }
       }
     })
