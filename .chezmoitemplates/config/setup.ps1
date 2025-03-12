@@ -25,7 +25,8 @@ $packages = @(
         "Obsidian.Obsidian",
         "Yubico.YubikeyManagerCLI",
         "albertony.npiperelay",
-        "Axosoft.GitKraken"
+        "Axosoft.GitKraken",
+        "wez.wezterm"
     )
 
 # Add in the personal packages if the role is personal

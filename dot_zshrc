@@ -10,6 +10,10 @@ bindkey ^S history-incremental-search-forward
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/.zsh_history
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
 
 # configure editors
 if command -v nvim &> /dev/null; then
@@ -85,8 +89,16 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 [ -f $HOME/.config/zsh_aliases ] && source $HOME/.config/zsh_aliases
 [ -f $HOME/.config/windows_aliases ] && source $HOME/.config/windows_aliases
 
+alias ls="eza --icons=always"
+eval "$(zoxide init zsh)"
+
+alias cd="z"
+
 # zsh Syntax Highlighting
-[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# zsh auto suggestions
+[ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Fuzzy finder
 if [ -f ~/.config/.fzf.zsh ]; then
