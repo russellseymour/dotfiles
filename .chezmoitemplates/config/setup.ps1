@@ -26,7 +26,9 @@ $packages = @(
         "Yubico.YubikeyManagerCLI",
         "albertony.npiperelay",
         "Axosoft.GitKraken",
-        "wez.wezterm"
+        "wez.wezterm",
+        "eza-community.eza",
+        "ajeetdsouza.zoxide"
     )
 
 # Add in the personal packages if the role is personal
