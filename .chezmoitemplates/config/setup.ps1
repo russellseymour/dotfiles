@@ -3,33 +3,33 @@ $role = "{{ .role }}"
 
 # Set a list of the applications that need to be installed
 $packages = @(
-        "AgileBits.1Password",
-        "Beeper.Beeper",
-        "Git.Git",
-        "GoLang.Go",
-        "7zip.7zip",
-        "Neovim.Neovim",
-        "Microsoft.PowerShell",
-        "GnuPG.Gpg4win",
-        "JanDeDobbeleer.OhMyPosh",
-        "Microsoft.PowerToys",
-        "Microsoft.VisualStudioCode",
-        "Microsoft.WindowsTerminal",
-        "Mozilla.Firefox",
-        "VideoLAN.VLC",
-        "OBSProject.OBSStudio",
-        "Zig.Zig",
-        "MartiCliment.UniGetUI",
-        "Seafile.Seafile",
-        "Yarn.Yarn",
-        "Obsidian.Obsidian",
-        "Yubico.YubikeyManagerCLI",
-        "albertony.npiperelay",
-        "Axosoft.GitKraken",
-        "wez.wezterm",
-        "eza-community.eza",
-        "ajeetdsouza.zoxide"
-    )
+    "AgileBits.1Password",
+    "Beeper.Beeper",
+    "Git.Git",
+    "GoLang.Go",
+    "7zip.7zip",
+    "Neovim.Neovim",
+    "Microsoft.PowerShell",
+    "GnuPG.Gpg4win",
+    "JanDeDobbeleer.OhMyPosh",
+    "Microsoft.PowerToys",
+    "Microsoft.VisualStudioCode",
+    "Microsoft.WindowsTerminal",
+    "Mozilla.Firefox",
+    "VideoLAN.VLC",
+    "OBSProject.OBSStudio",
+    "Zig.Zig",
+    "MartiCliment.UniGetUI",
+    "Seafile.Seafile",
+    "Yarn.Yarn",
+    "Obsidian.Obsidian",
+    "Yubico.YubikeyManagerCLI",
+    "albertony.npiperelay",
+    "Axosoft.GitKraken",
+    "wez.wezterm",
+    "eza-community.eza",
+    "ajeetdsouza.zoxide"
+)
 
 # Add in the personal packages if the role is personal
 if ($role -eq "personal") {
@@ -66,7 +66,8 @@ foreach ($package in $packages) {
     $status = $installed.sources[0].Packages.PackageIdentifier -contains $package
     if ($status) {
         Write-Host -ForegroundColor Green "[Installed]"
-    } else {
+    }
+    else {
         Write-Host -ForegroundColor Yellow "[Not Installed, installing ....]"
 
         # Define the command to run to install the packages
@@ -74,4 +75,19 @@ foreach ($package in $packages) {
 
         Invoke-Expression $cmd
     }
+}
+
+# Install the required fonts using oh-my-posh
+$ohmyposh_cmd = (Get-Command -Name "oh-my-posh").Source
+
+# if the command is blank then build up the path
+if ([String]::IsNullOrEmpty($ohmyposh_cmd)) {
+    $ohmyposh_cmd = [IO.Path]::Combine($env:LOCALAPPDATA, "Programs", "oh-my-posh", "bin", "oh-my-posh.exe")
+}
+
+if (Test-Path -Path $ohmyposh_cmd) {
+
+    # Install the font using the oh_my_posh command
+    Write-Host "Installing the required fonts"
+    Invoke-Expression $("{0} font install meslo" -f $ohmyposh_cmd)
 }
