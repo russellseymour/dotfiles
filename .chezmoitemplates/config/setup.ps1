@@ -20,7 +20,7 @@ $packages = @(
         "OBSProject.OBSStudio",
         "Zig.Zig",
         "MartiCliment.UniGetUI",
-        "Seafile.Seafile",
+        "Nextcloud.NextcloudDesktop",
         "Yarn.Yarn",
         "Obsidian.Obsidian",
         "Yubico.YubikeyManagerCLI",
