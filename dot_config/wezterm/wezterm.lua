@@ -18,8 +18,8 @@ config.default_prog = {"pwsh"}
 config.color_scheme = "Monokai Remastered"
 
 -- Set the font and size
-config.font = wezterm.font("MesloLGS Nerd Font Mono")
-config.font_size = 11
+config.font = wezterm.font("MesloLGM Nerd Font")
+config.font_size = 10
 config.launch_menu = launch_menu
 
 -- Make the cursor a blinking rectangle
@@ -73,9 +73,9 @@ config.use_fancy_tab_bar = true
 
 -- config.window_decorations = "TITLE | RESIZE"
 
-config.window_background_opacity = 0
+config.window_background_opacity = 0.8
 config.macos_window_background_blur = 10
-config.win32_system_backdrop = "Acrylic"
+-- config.win32_system_backdrop = "Acrylic"
 
 -- and finally, return the configuration to wezterm
 return config

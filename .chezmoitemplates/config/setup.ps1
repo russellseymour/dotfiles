@@ -26,7 +26,9 @@ $packages = @(
         "Yubico.YubikeyManagerCLI",
         "albertony.npiperelay",
         "Axosoft.GitKraken",
-        "wez.wezterm"
+        "wez.wezterm",
+        "eza-community.eza",
+        "ajeetdsouza.zoxide"
     )
 
 # Add in the personal packages if the role is personal
@@ -64,7 +66,8 @@ foreach ($package in $packages) {
     $status = $installed.sources[0].Packages.PackageIdentifier -contains $package
     if ($status) {
         Write-Host -ForegroundColor Green "[Installed]"
-    } else {
+    }
+    else {
         Write-Host -ForegroundColor Yellow "[Not Installed, installing ....]"
 
         # Define the command to run to install the packages
@@ -72,4 +75,19 @@ foreach ($package in $packages) {
 
         Invoke-Expression $cmd
     }
+}
+
+# Install the required fonts using oh-my-posh
+$ohmyposh_cmd = (Get-Command -Name "oh-my-posh").Source
+
+# if the command is blank then build up the path
+if ([String]::IsNullOrEmpty($ohmyposh_cmd)) {
+    $ohmyposh_cmd = [IO.Path]::Combine($env:LOCALAPPDATA, "Programs", "oh-my-posh", "bin", "oh-my-posh.exe")
+}
+
+if (Test-Path -Path $ohmyposh_cmd) {
+
+    # Install the font using the oh_my_posh command
+    Write-Host "Installing the required fonts"
+    Invoke-Expression $("{0} font install meslo" -f $ohmyposh_cmd)
 }
