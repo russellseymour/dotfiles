@@ -34,6 +34,7 @@ config.keys = {
         mods = 'SHIFT|ALT',
         action = act.SpawnTab 'CurrentPaneDomain',
       },
+    { key = 'L', mods = 'CTRL', action = wezterm.action.ShowDebugOverlay },
 }
 
 -- There are mouse binding to mimc Windows Terminal and let you copy
@@ -73,9 +74,10 @@ config.use_fancy_tab_bar = true
 
 -- config.window_decorations = "TITLE | RESIZE"
 
-config.window_background_opacity = 0.8
+config.front_end = "WebGpu"
+config.window_background_opacity = 0.2
 config.macos_window_background_blur = 10
--- config.win32_system_backdrop = "Acrylic"
+config.win32_system_backdrop = "Acrylic"
 
 -- and finally, return the configuration to wezterm
 return config
