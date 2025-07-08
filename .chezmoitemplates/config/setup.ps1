@@ -37,6 +37,8 @@ $packages = @(
 if ($role -eq "personal") {
     $packages += "Audacity.Audacity"
     $packages += "BlenderFoundation.Blender"
+    $packages += "HandBrake.HandBrake"
+    $packages += "Cockos.REAPER"
 }
 
 # Sort the list of packages
