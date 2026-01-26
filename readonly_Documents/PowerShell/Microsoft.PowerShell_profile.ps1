@@ -17,7 +17,7 @@ Set-Alias -Name ll -Value Get-ChildItem -Force
 
 $openSshExecutable = (Get-Command -Name ssh -ErrorAction SilentlyContinue).Source
 if (Test-Path $openSshExecutable) {
-    $env:GIT_SSH=$openSshExecutable;
+    $env:GIT_SSH = $openSshExecutable;
 }
 
 # Configure the SSH agent so that GPG can be used
@@ -35,3 +35,22 @@ if ($service.StartType -ne "Disabled") {
 }
 
 gpg-connect-agent /bye
+
+# Update the path to include tools directory
+$paths_to_add = @(
+    [IO.Path]::Combine($env:USERPROFILE, "tools"),
+    [IO.Path]::Combine($env:USERPROFILE, "tools", "az", "bin"),
+    [IO.Path]::Combine($env:USERPROFILE, "tools", "aws"),
+    [IO.Path]::Combine($env:USERPROFILE, ".local", "bin")
+)
+
+$paths = $env:PATH -split ";"
+
+# Iterate around the paths to add and see if it is in the path
+# if not then add it to the path
+foreach ($path in $paths_to_add) {
+    if ($paths -notcontains $path) {
+        Write-Host ("Adding {0} to PATH" -f $path)
+        $env:PATH = "{0};{1}" -f $path, $env:PATH
+    }
+}
