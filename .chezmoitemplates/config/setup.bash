@@ -11,7 +11,8 @@ sudo apt-update
 # Install required packages
 sudo apt install -y tmux \
     neovim \
-    zsh
+    zsh \
+    unzip 
 
 # Install oh-my-posh
 curl -s https://ohmyposh.dev/install.sh | bash -s

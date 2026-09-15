@@ -23,8 +23,8 @@ LICENSE
 
 # ignore if NOT Windows
 {{- if ne .chezmoi.os "windows" }}
-/Documents
-/AppData
-/Pictures
-/run_onchange_winget_install.ps1.tmpl
+Documents
+AppData
+Pictures
+run_onchange_winget_install.ps1.tmpl
 {{- end }}
