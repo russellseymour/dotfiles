@@ -134,18 +134,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # pnpm
-export PNPM_HOME="/home/richardslater/.local/share/pnpm"
+export PNPM_HOME="/home/russellseymour/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 
-# taskctl
-if command -v taskctl &> /dev/null; then
-  . <(taskctl completion zsh)
+# eirctl
+if command -v eirctl &> /dev/null; then
+  . <(eirctl completion zsh)
 fi
-# taskctl end
+# eirctl end
 
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent

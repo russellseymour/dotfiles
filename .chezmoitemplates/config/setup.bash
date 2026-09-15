@@ -12,6 +12,8 @@ sudo apt-update
 sudo apt install -y tmux \
     neovim \
     zsh \
+    zsh-syntax-highlighting \
+    zsh-autosuggestions \
     unzip \
     zoxide \
     eza
