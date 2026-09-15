@@ -89,10 +89,14 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 [ -f $HOME/.config/zsh_aliases ] && source $HOME/.config/zsh_aliases
 [ -f $HOME/.config/windows_aliases ] && source $HOME/.config/windows_aliases
 
-alias ls="eza --icons=always"
-eval "$(zoxide init zsh)"
+# Check to see if zoxide is installed, if it is then
+# set up aliases
+if [ -f "$(command -v zoxide)" ]; then
+  alias ls="eza --icons=always"
+  eval "$(zoxide init zsh)"
 
-alias cd="z"
+  alias cd="z"
+fi
 
 # zsh Syntax Highlighting
 [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
